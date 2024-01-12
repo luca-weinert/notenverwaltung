@@ -1,0 +1,6 @@
+Notenverwaltung:
+- neue Benutzer eintragen (Schueler und Lehrer)
+- Schüler soll alle seine Noten einsehen können
+- einsehen der Noten aller Schüler eines Lehrers
+- Lehrer kann Noten eintragen
+	- Wenn ein Lehrer eine neue Note einträgt, wird ein neuer 	Eintrag in der "Leistungs" / "Perfomance"

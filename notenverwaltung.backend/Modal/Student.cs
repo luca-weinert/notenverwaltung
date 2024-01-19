@@ -1,4 +1,4 @@
-﻿namespace Notenverwaltung.Backend.Modal
+﻿namespace notenverwaltung.backend.Modal
 {
     public class Student
     {

@@ -1,17 +1,14 @@
-﻿namespace Notenverwaltung.Backend.Modal
+﻿namespace notenverwaltung.backend.Modal
 {
-    using System;
     public class User
     {
-        public string firstname { get; private set; }
-        public string lastName { get; private set; }
-        public string birthdate { get; private set; }
+        public string id { get; set; }
+        public string firstname { get; set; }
+        public string lastName { get; set; }
+        public string birthdate { get; set; }
 
-        public User(string firstname, string lastName, string birthdate)
+        public User()
         {
-            this.firstname = firstname;
-            this.lastName = lastName;
-            this.birthdate = birthdate;
         }
     }
 }

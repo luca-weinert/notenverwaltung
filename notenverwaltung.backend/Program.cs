@@ -1,10 +1,8 @@
-﻿using System.Dynamic;
+﻿using notenverwaltung.backend.Adapter;
+using notenverwaltung.backend.Repositories;
 
-namespace Notenverwaltung.Backend
+namespace notenverwaltung.backend
 {
-    using Adapter;
-    using Adapter.MySql;
-
     class Programm
     {
         public static void GetAllGradesForStudent(int StudentID)
@@ -17,17 +15,17 @@ namespace Notenverwaltung.Backend
         {
             IDatabaseAdapter mysqlAdapter = new MySqlAdapter();
             Repository repository = new Repository(mysqlAdapter);
-
             repository.OpenConnection();
 
             // GetAllGradesForStudent(1);
-
-            // repository.GetUser();
+            var users = repository.GetUser();
+            
+            Console.WriteLine(users[0].firstname);
             // User user = new User("test", "user", "1701421323");
             // repository.SaveUsers(user);
 
-            repository.GetStudent();
-            repository.CloseConnection();
+            // repository.GetStudent();
+            // repository.CloseConnection();
             // User user = repository.GetUser();
         }
     };

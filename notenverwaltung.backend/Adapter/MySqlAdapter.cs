@@ -1,39 +1,40 @@
-﻿using Notenverwaltung.Backend.Modal;
+﻿using MySqlConnector;
+using notenverwaltung.backend.Modal;
 
-namespace Notenverwaltung.Backend.Adapter.MySql
+namespace notenverwaltung.backend.Adapter
 {
-    using Notenverwaltung.Backend.Adapter;
-    using System;
-    using System.Collections.Generic;
-    using MySqlConnector;
-
     public class MySqlAdapter : IDatabaseAdapter
     {
-        private MySqlConnection conn;
+        private MySqlConnection _conn;
 
-        public void OpenConnection()
+        public MySqlAdapter()
         {
-            string connString = "Server=localhost;Port=3306;User=luca;Password=test123#;Database=notenverwaltung;SSL Mode=none;AllowPublicKeyRetrieval=true";
-            this.conn = new MySqlConnection(connString);
+        }
+
+        public void OpenConnection(string connString)
+        {
             try
             {
-                conn.Open();
+                _conn = new MySqlConnection(connString);
+                _conn.Open();
             }
             catch (Exception e)
             {
-                // Hier solltest du die Ausnahme entsprechend behandeln oder loggen
                 Console.WriteLine(e);
             }
         }
 
         public void CloseConnection()
         {
-            this.conn.Close();
+            _conn.Close();
         }
 
         public void CreateNewUser(User user)
         {
-            MySqlCommand sqlCmd = new MySqlCommand($"INSERT INTO Users (FirstName, LastName, BirthDate) VALUES('{user.firstname}','{user.lastName}','{user.birthdate}');", this.conn);
+            MySqlCommand sqlCmd =
+                new MySqlCommand(
+                    $"INSERT INTO Users (FirstName, LastName, BirthDate) VALUES('{user.firstname}','{user.lastName}','{user.birthdate}');",
+                    _conn);
             try
             {
                 sqlCmd.ExecuteNonQuery();
@@ -48,45 +49,46 @@ namespace Notenverwaltung.Backend.Adapter.MySql
         {
             List<List<string>> users = new List<List<String>>();
 
-            MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Users;", this.conn);
+            MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Users;", _conn);
             MySqlDataReader reader = sqlCmd.ExecuteReader();
 
             while (reader.Read())
             {
                 List<string> user = new List<string>
-                    {
-                        reader.GetInt32(0).ToString(),
-                        reader.GetString(1),
-                        reader.GetString(2),
-                        reader.GetDateTime(3).ToString()
-                    };
+                {
+                    reader.GetInt32(0).ToString(),
+                    reader.GetString(1),
+                    reader.GetString(2),
+                    reader.GetString(3).ToString()
+                };
                 users.Add(user);
             }
+
             reader.Close();
             return users;
         }
 
         public void GetTeacher()
         {
-
         }
 
         public List<List<String>> GetStudent()
         {
             List<List<string>> studens = new List<List<String>>();
 
-            MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Students;", this.conn);
+            MySqlCommand sqlCmd = new MySqlCommand("SELECT * FROM Students;", this._conn);
             MySqlDataReader reader = sqlCmd.ExecuteReader();
 
             while (reader.Read())
             {
                 List<string> user = new List<string>
-                    {
-                        reader.GetInt32(0).ToString(),
-                        reader.GetInt32(1).ToString()
-                    };
+                {
+                    reader.GetInt32(0).ToString(),
+                    reader.GetInt32(1).ToString()
+                };
                 studens.Add(user);
             }
+
             reader.Close();
             return studens;
         }

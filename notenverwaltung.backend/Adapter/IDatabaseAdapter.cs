@@ -1,10 +1,10 @@
-﻿using Notenverwaltung.Backend.Modal;
+﻿using notenverwaltung.backend.Modal;
 
-namespace Notenverwaltung.Backend.Adapter
+namespace notenverwaltung.backend.Adapter
 {
     public interface IDatabaseAdapter
     {
-        void OpenConnection();
+        void OpenConnection(string ConnectionString);
         void CloseConnection();
         void CreateNewUser(User user);
         List<List<String>> GetUsers();

@@ -7,9 +7,9 @@ namespace notenverwaltung.backend.Adapter
         void OpenConnection(string ConnectionString);
         void CloseConnection();
         void CreateNewUser(User user);
-        List<List<String>> GetUsers();
+        List<List<String>> GetAllUsers();
 
-        List<List<String>> GetStudent();
+        List<List<String>> GetAllStudents();
 
         void GetTeacher()
         {

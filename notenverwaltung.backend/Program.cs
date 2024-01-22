@@ -18,7 +18,8 @@ namespace notenverwaltung.backend
             repository.OpenConnection();
 
             // GetAllGradesForStudent(1);
-            var users = repository.GetUser();
+            var users = repository.GetAllUsers();
+            var students = repository.GetAllStudents();
             
             Console.WriteLine(users[0].firstname);
             // User user = new User("test", "user", "1701421323");

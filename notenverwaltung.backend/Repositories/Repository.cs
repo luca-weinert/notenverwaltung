@@ -27,21 +27,33 @@ namespace notenverwaltung.backend.Repositories
         {
             _databaseAdapter.CreateNewUser(user);
         }
-
-        public void GetStudent()
-        {
-            List<List<String>> students = _databaseAdapter.GetStudent();
-            //TODO: convert student list to student object
-        }
-
-        public void GetTeacher()
+        
+        public void GetAllTeachers()
         {
             _databaseAdapter.GetTeacher();
         }
-
-        public List<User> GetUser()
+        
+        public List<Student> GetAllStudents()
         {
-            var usersRaw = _databaseAdapter.GetUsers();
+            var studentsRaw = _databaseAdapter.GetAllStudents();
+
+            List<Student> students = new List<Student>();
+          
+            foreach (var student in studentsRaw)
+            {
+                students.Add(new Student()
+                {
+                    StudentID = student[0],
+                    UserID = student[1]
+                });
+            }
+
+            return students;
+        }
+
+        public List<User> GetAllUsers()
+        {
+            var usersRaw = _databaseAdapter.GetAllUsers();
 
             List<User> users = new List<User>();
 

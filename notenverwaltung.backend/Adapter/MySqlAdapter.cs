@@ -45,7 +45,7 @@ namespace notenverwaltung.backend.Adapter
             }
         }
 
-        public List<List<String>> GetUsers()
+        public List<List<String>> GetAllUsers()
         {
             List<List<string>> users = new List<List<String>>();
 
@@ -72,7 +72,7 @@ namespace notenverwaltung.backend.Adapter
         {
         }
 
-        public List<List<String>> GetStudent()
+        public List<List<String>> GetAllStudents()
         {
             List<List<string>> studens = new List<List<String>>();
 

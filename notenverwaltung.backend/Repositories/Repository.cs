@@ -15,7 +15,7 @@ namespace notenverwaltung.backend.Repositories
         public void OpenConnection()
         {
             _databaseAdapter.OpenConnection(
-                "Server=localhost;Port=3306;User=luca;Password=test123#;Database=notenverwaltung;SSL Mode=none;AllowPublicKeyRetrieval=true");
+                "Server=localhost;Port=3306;User=root;Password=test123;Database=notenverwaltung");
         }
 
         public void CloseConnection()
